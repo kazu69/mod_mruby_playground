@@ -1,0 +1,16 @@
+LoadModule mruby_module       /usr/lib/apache2/modules/mod_mruby.so
+
+mrubyTranslateNameMiddle /var/www/rewrite.rb
+mrubyFixupsMiddle /var/www/cache_control.rb
+
+<Location /test/>
+  mrubyHandlerMiddle /var/www/test.rb
+</Location>
+
+<Directory /var/www/html/basic/>
+  AuthType basic
+  AuthName "Basic Auth"
+  AuthBasicProvider mruby
+  mrubyAuthnCheckPassword /var/www/authn_basic.rb
+  require valid-user
+</Directory>

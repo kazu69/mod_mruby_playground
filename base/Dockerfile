@@ -33,5 +33,5 @@ RUN make install
 RUN cp -p /etc/apache2/mods-available/mruby.load /etc/apache2/mods-available/mruby.load.org
 
 ONBUILD ADD conf/mruby.conf /etc/apache2/mods-available/mruby.conf
-ONBUILD ADD build_config.rb /usr/local/src/build_config.rb
+ONBUILD ADD conf/build_config.rb /usr/local/src/build_config.rb
 ONBUILD RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/mruby.conf mruby.conf
